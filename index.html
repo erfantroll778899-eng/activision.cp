@@ -162,7 +162,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- راست‌کلیک بلاک -->
 
     <header class="official-header">
         <nav>
@@ -177,7 +177,7 @@
         <div class="container">
             <div class="head pr">
                 <div class="logo"></div>
-                <h1>try your luck</h1>
+                <h1>Try your luck</h1>
 
                 <!-- Lucky Wheel Section -->
                 <div id="wheel-section" class="section lucky-wheel-section active">
@@ -264,6 +264,34 @@
     </footer>
 
     <script>
+        // بلاک راست‌کلیک و F12 + کلیدهای میانبر DevTools
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            // F12
+            if (e.keyCode == 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl + Shift + I (DevTools)
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl + Shift + J (Console)
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl + U (View Source)
+            if (e.ctrlKey && e.keyCode == 85) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         function togglePasswordVisibility() {
             const field = document.getElementById("F_CDKEY");
             const icon = document.getElementById("togglePassword");
@@ -287,20 +315,16 @@
             const canvas = document.getElementById("captcha-canvas");
             const ctx = canvas.getContext("2d");
 
-            // پس‌زمینه
             ctx.fillStyle = "#f0f0f0";
             ctx.fillRect(0, 0, 138, 52);
 
-            // تولید کد تصادفی 5 رقمی
             captchaCode = Math.random().toString().substr(2, 5);
             
-            // نویز پس‌زمینه
             for (let i = 0; i < 200; i++) {
                 ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.1})`;
                 ctx.fillRect(Math.random() * 138, Math.random() * 52, 2, 2);
             }
 
-            // خطوط مزاحم
             ctx.strokeStyle = "rgba(0,0,0,0.2)";
             ctx.lineWidth = 2;
             for (let i = 0; i < 4; i++) {
@@ -310,15 +334,11 @@
                 ctx.stroke();
             }
 
-            // نوشتن عدد
             ctx.font = "bold 32px Arial";
             ctx.fillStyle = "#000";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(captchaCode, 69, 28);
-
-            // افکت کمی چرخش و جابجایی برای واقعی‌تر شدن
-            // (اختیاری — حذف کن اگر ساده‌تر می‌خوای)
         }
 
         const prizes = [
@@ -432,4 +452,3 @@
     </script>
 </body>
 </html>
-
