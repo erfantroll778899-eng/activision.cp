@@ -160,6 +160,32 @@
         #refvc img:hover {
             transform: rotate(360deg);
         }
+      /* استایل جدید برای لوگوهای ESRB در فوتر - اندازه کوچک و حرفه‌ای */
+.esrb-ratings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0 10px;
+    flex-wrap: wrap;
+}
+
+.esrb-ratings img {
+    height: 80px;  /* اندازه استاندارد و کوچک (مثل سایت رسمی) */
+    width: auto;
+    max-width: 150px;
+}
+
+/* برای موبایل - کوچکتر و مرتب */
+@media (max-width: 600px) {
+    .esrb-ratings {
+        gap: 20px;
+        flex-direction: column;
+    }
+    .esrb-ratings img {
+        height: 70px;
+    }
+}
     </style>
 </head>
 <body oncontextmenu="return false;"> <!-- لایه اول بلاک راست‌کلیک -->
@@ -256,11 +282,21 @@
         </div>
     </div>
 
+<!-- فوتر با لوگوهای ESRB -->
     <footer class="official-footer">
         <div class="footer-links">
             <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">Support</a>
         </div>
         <p>© 2019-2026 Activision Publishing, Inc. All rights reserved.</p>
+
+        <!-- دو لوگوی ESRB -->
+        <div class="esrb-ratings">
+            <!-- لوگو اول: Mature 17+ -->
+            <img src="cod-hub-esrb-en.png" alt="ESRB Rating: Mature 17+" />
+
+            <!-- لوگو دوم: Privacy Certified -->
+            <img src="Privacy_Certified_Globe_color_2022.png" alt="ESRB Privacy Certified" />
+        </div>
     </footer>
 
     <script>
