@@ -21,7 +21,13 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
-        .official-header nav { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
+        .official-header nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin-top: 10px; 
+            flex-wrap: wrap;
+        }
         .official-header nav a { color: #fff; text-decoration: none; font-size: 14px; text-transform: none; }
         .official-header nav a:hover { color: #00ff00; }
         .official-footer { background: #111; color: #888; padding: 30px 20px; text-align: center; font-size: 12px; border-top: 1px solid #333; }
@@ -118,22 +124,142 @@
             mask-composite: exclude; 
         }
         .input-wrapper.focus::after { opacity: 1; transform: scale(1.02); }
-        .verification_row { margin: 30px 0; display: flex; justify-content: center; align-items: center; gap: 15px; }
-        #captcha-canvas { width: 150px; height: 60px; background: #fff; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 100, 0.6); }
+
+        .verification_row { 
+            margin: 30px 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+        }
+        #captcha-canvas { 
+            width: 150px; 
+            height: 60px; 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 0 20px rgba(0, 255, 100, 0.6); 
+        }
         #refvc img { width: 36px; height: 36px; cursor: pointer; filter: brightness(0) invert(1); }
         #refvc img:hover { transform: rotate(360deg); transition: 0.6s; }
-        .btn_yellow { width: 100%; padding: 18px; background: linear-gradient(to bottom, #ffdd00, #ccaa00); border: none; border-radius: 8px; color: #000; font-size: 20px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin: 30px 0; box-shadow: 0 5px 20px rgba(255, 221, 0, 0.5); transition: all 0.3s ease; }
-        .btn_yellow:hover { background: linear-gradient(to bottom, #ffee33, #ddbb00); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 221, 0, 0.6); }
+
+        .btn_yellow { 
+            width: 100%; 
+            padding: 18px; 
+            background: linear-gradient(to bottom, #ffdd00, #ccaa00); 
+            border: none; 
+            border-radius: 8px; 
+            color: #000; 
+            font-size: 20px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            margin: 30px 0; 
+            box-shadow: 0 5px 20px rgba(255, 221, 0, 0.5); 
+            transition: all 0.3s ease; 
+        }
+        .btn_yellow:hover { 
+            background: linear-gradient(to bottom, #ffee33, #ddbb00); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(255, 221, 0, 0.6); 
+        }
+
         .or-divider { margin: 40px 0 30px; color: #888; font-size: 18px; position: relative; }
         .or-divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #444; }
         .or-divider span { background: rgba(0,0,0,0.7); padding: 0 30px; }
-        .platform-buttons { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: nowrap; }
-        .platform-btn { position: relative; width: 80px; height: 60px; background: #1a1a1a; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+
+        .platform-buttons { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .platform-btn { 
+            position: relative; 
+            width: 80px; 
+            height: 60px; 
+            background: #1a1a1a; 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            transition: all 0.3s ease; 
+        }
         .platform-btn::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #ffdd00; }
         .platform-btn:hover { background: #222; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(255, 221, 0, 0.3); }
         .platform-btn img { width: 50px; height: 50px; filter: brightness(0) invert(1); }
+
         .esrb-ratings { display: flex; justify-content: center; align-items: center; gap: 30px; margin: 20px 0 10px; flex-wrap: wrap; }
         .esrb-ratings img { height: 80px; width: auto; max-width: 150px; }
+
+        /* ==== فقط تنظیمات موبایل — دسکتاپ دست نخورده ==== */
+        @media (max-width: 768px) {
+            .lucky-wheel-section {
+                max-width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .login-section {
+                max-width: 95%;
+                width: 95%;
+                margin: 20px auto;
+                padding: 30px 20px;
+            }
+            #wheel, #winning-overlay {
+                width: 300px !important;
+                height: 300px !important;
+            }
+            .arrow {
+                top: -15px;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-top: 40px solid #ff0000;
+            }
+            #winning-text {
+                font-size: 36px;
+            }
+            .verification_row > div,
+            .verification_row > canvas,
+            .verification_row > a {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            #captcha-canvas {
+                margin: 10px auto;
+            }
+            #refvc {
+                margin: 10px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #wheel, #winning-overlay {
+                width: 260px !important;
+                height: 260px !important;
+            }
+            .arrow {
+                border-left: 18px solid transparent;
+                border-right: 18px solid transparent;
+                border-top: 35px solid #ff0000;
+            }
+            #winning-text {
+                font-size: 30px;
+            }
+            #spin-btn, #continue-btn {
+                padding: 12px 30px;
+                font-size: 18px;
+            }
+            .platform-btn {
+                width: 70px;
+                height: 55px;
+            }
+            .platform-btn img {
+                width: 45px;
+                height: 45px;
+            }
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -188,7 +314,7 @@
                             </div>
 
                             <div class="verification_row">
-                                <div class="input-wrapper" id="captcha-field" style="display:inline-block; width:180px;">
+                                <div class="input-wrapper" id="captcha-field">
                                     <input type="text" name="vcode" id="F_VCODE" placeholder="Verification Code" required autocomplete="off" />
                                 </div>
                                 <canvas id="captcha-canvas" width="150" height="60"></canvas>
@@ -209,16 +335,16 @@
 
                         <div class="platform-buttons">
                             <div class="platform-btn">
-                                <a href="https://my.account.sony.com/sonyacct/signin/?response_type=code&client_id=9fc1ccc1-33bb-4a20-b9fe-8b49212d2861&redirect_uri=https%3A%2F%2Fprod.umbrella.demonware.net%2Fv1.0%2Faccounts%2Fpsn%2Fauth%2Fcallback%2F&scope=psn%3As2s&state=eyJjbGllbnQiOiAic3NvLW5leHVzIiwgImNsaWVudF9zdGF0ZSI6ICIzZTU0YzVhZi03N2Y3LWU3NWItYTdhYy1lNGRhYWI3OGY3OTYiLCAicmV0dXJuX3VybCI6ICJodHRwczovL3hvLWNsaWVudC5hY3RpdmlzaW9uLmNvbS9hdXRoL3YxL3hGaXJzdFBhcnR5TG9naW4vY29tcGxldGUifQ&cid=1f673deb-dd8d-4604-a976-d9ecc574444d&error=login_required&error_code=4165&no_captcha=true#/signin/input/id"><img src="PlayStation_logo.svg.png" alt="PlayStation"></a>
+                                <a href="https://my.account.sony.com/..."><img src="PlayStation_logo.svg.png" alt="PlayStation"></a>
                             </div>
                             <div class="platform-btn">
-                                <a href="https://login.live.com/oauth20_authorize.srf?client_id=000000004C19F958&scope=Xboxlive.signin%2CXboxlive.offline_access&response_type=code&redirect_uri=https%3A%2F%2Fprod.umbrella.demonware.net%2Fv1.0%2Faccounts%2Fxbl%2Fauth%2Fcallback%2F&state=eyJjbGllbnQiOiAic3NvLW5leHVzIiwgImNsaWVudF9zdGF0ZSI6ICIzN2E4ZDE4YS00YmIzLTlmYTEtMmZhZi04MGU1MGIyNDkwYzAiLCAicmV0dXJuX3VybCI6ICJodHRwczovL3hvLWNsaWVudC5hY3RpdmlzaW9uLmNvbS9hdXRoL3YxL3hGaXJzdFBhcnR5TG9naW4vY29tcGxldGUifQ%3D%3D"><img src="Xbox_Logo.svg" alt="Xbox"></a>
+                                <a href="https://login.live.com/..."><img src="Xbox_Logo.svg" alt="Xbox"></a>
                             </div>
                             <div class="platform-btn">
-                                <a href="https://eu.account.battle.net/login/en/?ref=https://oauth.battle.net/authorize?client_id%3Db462fb2ba2d34c52af732e0d35c2d6c8%26scope%26state%3DeyJjbGllbnQiOiAic3NvLW5leHVzIiwgImNsaWVudF9zdGF0ZSI6ICIzMzdkMDU5Yy03ZTNmLTE4NTItZDYyYi1hNGJlZjNjOTA4YmEiLCAicmV0dXJuX3VybCI6ICJodHRwczovL3hvLWNsaWVudC5hY3RpdmlzaW9uLmNvbS9hdXRoL3YxL3hGaXJzdFBhcnR5TG9naW4vY29tcGxldGUiLCAicmVnaW9uIjogInVzIn0%253D%26redirect_uri%3Dhttps%253A%252F%252Fprod.umbrella.demonware.net%252Fv1.0%252Faccounts%252Fbattle%252Fauth%252Fcallback%252F%26response_type%3Dcode&app=oauth&hostingApp=oauth"><img src="battlenetLogo.png" alt="Battle.net"></a>
+                                <a href="https://eu.account.battle.net/..."><img src="battlenetLogo.png" alt="Battle.net"></a>
                             </div>
                             <div class="platform-btn">
-                                <a href="https://steamcommunity.com/openid/loginform/?goto=%2Fopenid%2Flogin%3Fopenid.ns%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26openid.mode%3Dcheckid_setup%26openid.identity%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.claimed_id%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.return_to%3Dhttps%253A%252F%252Fprod.umbrella.demonware.net%252Fv1.0%252Faccounts%252Fsteam%252Fauth%252Fcallback%252F%253Fstate%253DeyJjbGllbnQiOiAic3NvLW5leHVzIiwgImNsaWVudF9zdGF0ZSI6ICI2YWI4ZmIwZC0xYmI4LTE2YjAtNjkwMy1mNDA0MjQxZTZmOTIiLCAicmV0dXJuX3VybCI6ICJodHRwczovL3hvLWNsaWVudC5hY3RpdmlzaW9uLmNvbS9hdXRoL3YxL3hGaXJzdFBhcnR5TG9naW4vY29tcGxldGUifQ%25253D%25253D%26openid.realm%3Dhttps%253A%252F%252Fprod.umbrella.demonware.net"><img src="steam-1-logo-black-and-white.png" alt="Steam"></a>
+                                <a href="https://steamcommunity.com/..."><img src="steam-1-logo-black-and-white.png" alt="Steam"></a>
                             </div>
                         </div>
                     </div>
@@ -250,14 +376,12 @@
     </footer>
 
     <script>
-        // Glow اینپوت‌ها
         document.querySelectorAll('.input-wrapper input').forEach(input => {
             const parent = input.parentElement;
             input.addEventListener('focus', () => parent.classList.add('focus'));
             input.addEventListener('blur', () => parent.classList.remove('focus'));
         });
 
-        // جلوگیری از راست کلیک و کلیدهای توسعه‌دهنده
         document.oncontextmenu = e => e.preventDefault();
         document.addEventListener("keydown", e => {
             if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
@@ -300,19 +424,19 @@
             const canvas = document.getElementById("captcha-canvas");
             const ctx = canvas.getContext("2d");
             ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, 150, 60);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             captchaCode = Math.random().toString().substr(2, 5).toUpperCase();
 
             for (let i = 0; i < 300; i++) {
                 ctx.fillStyle = `rgba(0,0,0,${Math.random()*0.15})`;
-                ctx.fillRect(Math.random()*150, Math.random()*60, 3, 3);
+                ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 3, 3);
             }
             for (let i = 0; i < 5; i++) {
                 ctx.strokeStyle = "rgba(0,0,0,0.3)";
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(Math.random()*150, Math.random()*60);
-                ctx.lineTo(Math.random()*150, Math.random()*60);
+                ctx.moveTo(Math.random()*canvas.width, Math.random()*canvas.height);
+                ctx.lineTo(Math.random()*canvas.width, Math.random()*canvas.height);
                 ctx.stroke();
             }
 
@@ -320,7 +444,7 @@
             ctx.fillStyle = "#000";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(captchaCode, 75, 30);
+            ctx.fillText(captchaCode, canvas.width / 2, canvas.height / 2);
         }
 
         const prizes = ["500 CP", "800 CP", "Try Again!", "1200 CP", "2000 CP", "Try Again!", "100 CP", "400 CP"];
@@ -328,16 +452,10 @@
 
         const wheel = document.getElementById("wheel");
         const ctx = wheel.getContext("2d");
-        const spinBtn = document.getElementById("spin-btn");
-        const continueBtn = document.getElementById("continue-btn");
-        const resultText = document.getElementById("result-text");
-        const prizeAnnouncement = document.getElementById("prize-announcement");
         const winningOverlay = document.getElementById("winning-overlay");
-        const winningText = document.getElementById("winning-text");
 
-        let isSpinning = false;
-        let hasWonCP = false;
         let currentRotation = 0;
+        let isSpinning = false;
 
         function drawWheel() {
             const numSegments = prizes.length;
@@ -371,49 +489,59 @@
             }
         }
 
+        function resizeAndRedrawWheel() {
+            let size = 350;
+            if (window.innerWidth <= 768) size = 300;
+            if (window.innerWidth <= 480) size = 260;
+
+            wheel.width = size;
+            wheel.height = size;
+            winningOverlay.style.width = size + "px";
+            winningOverlay.style.height = size + "px";
+            drawWheel();
+        }
+
         function spinWheel() {
             if (isSpinning) return;
 
             winningOverlay.style.opacity = 0;
-            winningText.textContent = "";
-            resultText.textContent = "Spinning...";
+            document.getElementById("winning-text").textContent = "";
+            document.getElementById("result-text").textContent = "Spinning...";
 
             isSpinning = true;
-            spinBtn.disabled = true;
+            document.getElementById("spin-btn").disabled = true;
 
             const winningIndex = Math.floor(Math.random() * prizes.length);
             const segmentAngle = 360 / prizes.length;
             const targetAngle = winningIndex * segmentAngle + segmentAngle / 2;
 
             const spins = 6 + Math.floor(Math.random() * 2);
-            const extraRotation = spins * 360;
-            const totalRotation = currentRotation + extraRotation + (360 - targetAngle);
+            const totalRotation = currentRotation + spins * 360 + (360 - targetAngle);
 
             wheel.style.transform = `rotate(${totalRotation}deg)`;
             currentRotation = totalRotation % 360;
 
             setTimeout(() => {
                 const prize = prizes[winningIndex];
+                const resultText = document.getElementById("result-text");
 
                 if (prize === "Try Again!") {
                     resultText.innerHTML = `<strong style="color:#ff4444;">Try Again!</strong> 😅<br><span style="font-size:24px;">Spin again!</span>`;
-                    spinBtn.textContent = "Spin Again!";
-                    spinBtn.disabled = false;
+                    document.getElementById("spin-btn").textContent = "Spin Again!";
+                    document.getElementById("spin-btn").disabled = false;
                 } else {
                     resultText.innerHTML = `Congratulations! You won: <strong>${prize}</strong> 🎉`;
-                    continueBtn.style.display = "inline-block";
-                    hasWonCP = true;
-                    spinBtn.textContent = "You won CP!";
-                    spinBtn.style.background = "#555";
-                    spinBtn.style.color = "#aaa";
+                    document.getElementById("continue-btn").style.display = "inline-block";
+                    document.getElementById("spin-btn").textContent = "You won CP!";
+                    document.getElementById("spin-btn").style.background = "#555";
+                    document.getElementById("spin-btn").style.color = "#aaa";
                 }
 
-                winningText.textContent = prize;
+                document.getElementById("winning-text").textContent = prize;
                 winningOverlay.style.background = `radial-gradient(circle, transparent 35%, ${colors[winningIndex]}AA 100%)`;
                 winningOverlay.style.opacity = 1;
 
                 window.winningPrize = prize;
-
                 isSpinning = false;
             }, 6000);
         }
@@ -421,13 +549,14 @@
         function showLoginForm() {
             document.getElementById("wheel-section").classList.remove("active");
             document.getElementById("login-section").classList.add("active");
-            prizeAnnouncement.textContent = `Congratulations! You won ${window.winningPrize} 🎉 Log in to claim your prize:`;
-            prizeAnnouncement.style.display = "block";
+            document.getElementById("prize-announcement").textContent = `Congratulations! You won ${window.winningPrize} 🎉 Log in to claim your prize:`;
+            document.getElementById("prize-announcement").style.display = "block";
         }
 
         window.onload = function() {
             generateCaptcha();
-            drawWheel();
+            resizeAndRedrawWheel();
+            window.addEventListener("resize", resizeAndRedrawWheel);
         };
     </script>
 </body>
